@@ -15,7 +15,12 @@ y = Variable([[1], [2]], require_grad=True)
 # 向量四则运算
 u = A @ y
 v = u.T @ u
-print(v)
 v.backward()
-print(A.grad, y.grad)
-print(2 * A @ y @ y.T, 2 * A.T @ A @ y)
+print(2 * u)
+print(u.grad)
+
+print(y.grad)
+print(2 * A.T @ A @ y)
+
+print(A.grad)
+print(2 * A @ y @ y.T)

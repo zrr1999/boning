@@ -7,7 +7,7 @@ def add(a: "Variable", b: "Variable"):
     """
     if type(b) != Variable:
         b = Variable(b)
-    return Variable(a.value + b.value, "add", (a, b), True)
+    return Variable(a.value + b.value, "add", (a, b), a.require_grad or b.require_grad)
 
 
 def sub(a: "Variable", b: "Variable"):
@@ -18,7 +18,7 @@ def sub(a: "Variable", b: "Variable"):
         a = Variable(a)
     if type(b) != Variable:
         b = Variable(b)
-    return Variable(a.value - b.value, "sub", (a, b), True)
+    return Variable(a.value - b.value, "sub", (a, b), a.require_grad or b.require_grad)
 
 
 def mul(a: "Variable", b: "Variable"):
@@ -27,7 +27,7 @@ def mul(a: "Variable", b: "Variable"):
     """
     if type(b) != Variable:
         b = Variable(b)
-    return Variable(a.value * b.value, "mul", (a, b), True)
+    return Variable(a.value * b.value, "mul", (a, b), a.require_grad or b.require_grad)
 
 
 def matmul(a: "Variable", b: "Variable"):
@@ -36,7 +36,7 @@ def matmul(a: "Variable", b: "Variable"):
     """
     if type(b) != Variable:
         b = Variable(b)
-    return Variable(a.value @ b.value, "matmul", (a, b), True)
+    return Variable(a.value @ b.value, "matmul", (a, b), a.require_grad or b.require_grad)
 
 
 def truediv(a: "Variable", b: "Variable"):
@@ -47,7 +47,7 @@ def truediv(a: "Variable", b: "Variable"):
         a = Variable(a)
     if type(b) != Variable:
         b = Variable(b)
-    return Variable(a.value / b.value, "div", (a, b), True)
+    return Variable(a.value / b.value, "div", (a, b), a.require_grad or b.require_grad)
 
 
 def pow(a: "Variable", b: "Variable"):
@@ -63,7 +63,7 @@ def pow(a: "Variable", b: "Variable"):
             a = Variable(a)
         if type(b) != Variable:
             b = Variable(b)
-        return Variable(a.value ** b.value, "pow", (a, b), True)
+        return Variable(a.value ** b.value, "pow", (a, b), a.require_grad or b.require_grad)
 
 
 def log(x: "Variable"):
@@ -72,7 +72,7 @@ def log(x: "Variable"):
     """
     if type(x) != Variable:
         x = Variable(x)
-    return Variable(np.log(x.value), "ln", (x,), True)
+    return Variable(np.log(x.value), "ln", (x,), x.require_grad)
 
 
 def exp(x: "Variable"):
@@ -81,7 +81,7 @@ def exp(x: "Variable"):
     """
     if type(x) != Variable:
         x = Variable(x)
-    return Variable(np.exp(x.value), "exp", (x,), True)
+    return Variable(np.exp(x.value), "exp", (x,), x.require_grad)
 
 
 def diff(node, func):

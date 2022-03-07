@@ -6,3 +6,7 @@
 @File : optimizer.py
 @desc : 本代码未经授权禁止商用
 """
+import torch
+torch.optim.SGD
+
+torch.nn.Conv2d
